@@ -16,11 +16,13 @@ To get started:
 cmsrel  CMSSW_10_6_29
 cd  CMSSW_10_6_29/src
 cmsenv
-git cms-rebase-topic andrzejnovak:614nosort
+git cms-addpkg PhysicsTools/NanoAOD
+git cms-rebase-topic andrzejnovak:614nosort #not sure why this is necessary, but following the official repo
 git clone https://github.com/kaustuvdatta/PFNano.git PhysicsTools/PFNano
 scram b -j 10
 cd PhysicsTools/PFNano/
 git checkout origin RunIISummer20_production
+cd PhysicsTools/PFNano/test
 ```
 ## Local Usage and setup: 
 (Outdated/parts not relevant; this is taken from the official repo which was built up to work with nanoAODv8 not 9, but everything below generally applies for nanoAODv9 production and this branch has been otherwise updated for compatibility with v9 as stated before)
@@ -92,15 +94,11 @@ bash make_configs_UL.sh  -e # run to actually execute configs on 1000 events
 </details>
 
 **Old-school interactive submission**
-    Samples can be submitted to crab using the `submit_all.py` script. Run with `-h` option to see usage. Example can look like this:
-
-    ```
-    python submit_all.py -c nano_config.py -s T2_DE_RWTH -f datasets/text_list.txt  -o /store/user/$USER/PFNano/  --ext test --test -d crab_noinpts
-
-    ```
-
-    For the UL 2016-2018 MC:
+    Samples can be submitted to crab using the `submit_all.py` script. Run with `-h` option to see usage. 
     
+    Forthe production of UL samples for SMP-22-003 everything (including configs, datasets, etc.) is already set up on this branch, so just running (any of) the following lines will work out of the box. Comomenting out UL2017/2018 productions here, please uncomment if necessary.
+
+    For UL 2016-2018 MC:
     
     ```
     python submit_all.py -c nano_mc_2016_ULPreVFP_NANO.py  -f datasets/UL2016_MC_preVFP.txt  -d NANOv9_UL16preVFP_MC
@@ -110,8 +108,11 @@ bash make_configs_UL.sh  -e # run to actually execute configs on 1000 events
     #python submit_all.py -c nnano_mc_2017_UL_NANO.py  -f datasets/UL2017_MC.txt   -d NANOv9_UL17_MC
 
     #python submit_all.py -c nano_mc_2018_UL_NANO.py  -f datasets/UL2018_MC.txt  -d NANOv9_UL18_MC
-
-
+    ```
+    
+    For UL 2016-2018 data:
+    
+    ```
     python submit_all.py -c nano_data_2016_ULPreVFP_NANO.py  -f datasets/JetHT_UL2016_preVFP.txt -d NANOv9_UL16preVFP_Data -l jsons/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt 
 
     python submit_all.py -c nano_data_2016_ULPostVFP_NANO.py  -f datasets/JetHT_UL2016_postVFP.txt -d NANOv9_UL16postVFP_Data -l jsons/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt 
@@ -132,7 +133,7 @@ bash make_configs_UL.sh  -e # run to actually execute configs on 1000 events
 
 ## Processing data
 
-When processing data, a lumi mask should be applied. The so called golden JSON should be applicable in most cases. Should also be checked here https://twiki.cern.ch/twiki/bin/view/CMS/PdmV; they are stored in the jsons directory in PFNano/test and are taken from: 
+When processing data, a lumi mask should be applied. The so called golden JSON should be applicable in most cases. Should also be checked here https://twiki.cern.ch/twiki/bin/view/CMS/PdmV; they are stored in the jsons directory in PFNano/test for convenience, and are copied from the official source: 
 
 ```
 # 2016: /afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/certification/Collisions16/13TeV/Legacy_2016/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt
@@ -141,14 +142,14 @@ When processing data, a lumi mask should be applied. The so called golden JSON s
 
 ```
 
-Include in `card.yml` for `crabby.py` submission. (In interactive submission add `--lumiMask jsons/...txt`)
+In interactive submission add `--lumiMask jsons/...txt`. And for `crabby.py` submissions include in `card.yml`. 
 
 
-## How to create website with nanoAOD content
+## How to create a website with (PF)NanoAOD content
 
-To create nice websites like [this one](http://algomez.web.cern.ch/algomez/testWeb/JMECustomNano102x_mc_v01.html#Jet) with the content of nanoAOD, use the `inspectNanoFile.py` file from the `PhysicsTools/nanoAOD` package as:
+To create nice websites like [this one] (http://algomez.web.cern.ch/algomez/testWeb/JMECustomNano102x_mc_v01.html#Jet) with the content of your nanoAODs, use the `inspectNanoFile.py` file from the `PhysicsTools/nanoAOD` package. To see how this looks, one can run, for example, on a dummy file provided in PFNano/test as follows:
 ```
-python PhysicsTools/NanoAOD/test/inspectNanoFile.py NANOAOD.root -s website_with_collectionsize.html -d website_with_collectiondescription.html
+python ../../NanoAOD/test/inspectNanoFile.py nano_mc2018.root -s website_with_collectionsize.html -d website_with_collectiondescription.html
 ```
 
 ## Documenting the Extended NanoAOD Samples
