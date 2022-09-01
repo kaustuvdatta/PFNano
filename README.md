@@ -7,7 +7,9 @@ This format can be used with [fastjet](http://fastjet.fr) directly.
 
 **THIS IS A DEVELOPMENT BRANCH**
 
-Previously designed for **UL** 2016, 2017 and 2018 data and MC **NanoAODv8** according to the [XPOG](https://gitlab.cern.ch/cms-nanoAOD/nanoaod-doc/-/wikis/Releases/NanoAODv8) and [PPD](https://twiki.cern.ch/twiki/bin/view/CMS/PdmVRun2LegacyAnalysisSummaryTable) recommendations. Currently, the RunIISummer20_production branch on this fork from the [official cms repo](https://github.com/cms-jet/PFNano), is updated for nanoAODv9 production on MiniAODv2 for RunII UL using the latest global tags as recommended by [PPD for UL production](https://twiki.cern.ch/twiki/bin/viewauth/CMS/PdmVRun2LegacyAnalysis) and as per [instructions for nanoAODv9 production](https://gitlab.cern.ch/cms-nanoAOD/nanoaod-doc/-/wikis/Releases/NanoAODv9).
+Taken from official repo-> For **UL** 2016, 2017 and 2018 data and MC **NanoAODv8** according to the [XPOG](https://gitlab.cern.ch/cms-nanoAOD/nanoaod-doc/-/wikis/Releases/NanoAODv8) and [PPD](https://twiki.cern.ch/twiki/bin/view/CMS/PdmVRun2LegacyAnalysisSummaryTable) recommendations. 
+
+Currently, the RunIISummer20_production branch on this fork from the [official cms repo](https://github.com/cms-jet/PFNano), is updated for nanoAODv9 production on MiniAODv2 for RunII UL using the latest global tags as recommended by [PPD for UL production](https://twiki.cern.ch/twiki/bin/viewauth/CMS/PdmVRun2LegacyAnalysis) and as per [instructions for nanoAODv9 production](https://gitlab.cern.ch/cms-nanoAOD/nanoaod-doc/-/wikis/Releases/NanoAODv9).
 
 To get started:
 ```
@@ -20,7 +22,8 @@ scram b -j 10
 cd PhysicsTools/PFNano/
 git checkout origin RunIISummer20_production
 ```
-## Local Usage: (Outdated/parts not relevant; this is taken from the official repo which was built up to work with nanoAODv9, but everything below generally applies for nanoAODv9 production, in principle-KD)
+## Local Usage and setup: 
+(Outdated/parts not relevant; this is taken from the official repo which was built up to work with nanoAODv8 not 9, but everything below generally applies for nanoAODv9 production and this branch has been otherwise updated for compatibility with v9 as stated before)
 
 There are python config files ready to run in `PhysicsTools/PFNano/test/` for the UL campaign of nanoAODv8, named `nano106Xv8_on_mini106X_201*_data_NANO.py`. Notice that the current version can create 4 types of files depending on the PF candidates content. 
 In this files, for simplicity, the 4 options are included but only one is commented out for use. For instance:
@@ -141,8 +144,7 @@ python PhysicsTools/NanoAOD/test/inspectNanoFile.py NANOAOD.root -s website_with
 
 ## Documenting the Extended NanoAOD Samples
 
-[Not sure if still relevant] Please document the input and output datasets on the following twiki: https://twiki.cern.ch/twiki/bin/view/CMS/JetMET/JMARNanoAODv1.
-For the MC, the number of events can be found by looking up the output dataset in DAS. For the data, you will need to run brilcalc to get the total luminosity of the dataset. See the instructions below. 
+For the MC samples, the number of events can be found by looking up the output dataset in DAS. For the data, you will need to run brilcalc to get the total luminosity of the dataset. See the instructions below. 
 
 
 ## Running brilcalc
