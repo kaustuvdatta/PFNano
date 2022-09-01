@@ -28,7 +28,7 @@ git checkout origin RunIISummer20_production
 There are python config files ready to run in `PhysicsTools/PFNano/test/` for the UL campaign of nanoAODv9, named `nano_{mc,data}_{2016,2017,2018}_UL*_NANO.py`. 
 
 <details>
-  <summary>Details on how the config files are modified<summary>
+  <summary>Details on how the config files are modified</summary>
   
     (comments below are for nanoAODv8 production, which this was last updated for officially, but are generally applicable to the nanoAODv9 (on MiniAODv2) production this branch is intended for)
     
@@ -55,7 +55,7 @@ There are python config files ready to run in `PhysicsTools/PFNano/test/` for th
     ```
     In general, whenever `_add_DeepJet` is specified (does not apply to `AK8JetsOnly` and `noInputs`), the DeepJet inputs are added to the Jet collection. For all other cases that involve adding tagger inputs, only DeepCSV and / or DDX are taken into account as default (= the old behaviour when `keepInputs=True`). Internally, this is handled by selecting a list of taggers, namely choosing from `DeepCSV`, `DeepJet`, and `DDX` (or an empty list for the `noInputs`-case, formerly done by setting `keepInputs=False`, now set `keepInputs=[]`). This refers to a change of the logic inside `pfnano_cff.py` and `addBTV.py`. If one wants to use this new flexibility, one can also define new customization functions with other combinations of taggers. Currently, there are all configurations to reproduce the ones that were available previously, and all configuations that extend the old ones by adding DeepJet inputs. DeepJet outputs, on top of the discriminators already present in NanoAOD, are added in any case where AK4Jets are added, i.e. there is no need to require the full set of inputs to get the individual output nodes / probabilities. The updated description using `PFnano_customizeMC_add_DeepJet` can be viewed here: [here](https://annika-stein.web.cern.ch/PFNano/AddDeepJetTagInfo_desc.html) and the size [here](https://annika-stein.web.cern.ch/PFNano/AddDeepJetTagInfo_size.html).
 
-<details>
+</details>
 
 ### How to create python files using cmsDriver
 
