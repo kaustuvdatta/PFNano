@@ -25,28 +25,35 @@ git checkout origin RunIISummer20_production
 ## Local Usage and setup: 
 (Outdated/parts not relevant; this is taken from the official repo which was built up to work with nanoAODv8 not 9, but everything below generally applies for nanoAODv9 production and this branch has been otherwise updated for compatibility with v9 as stated before)
 
-There are python config files ready to run in `PhysicsTools/PFNano/test/` for the UL campaign of nanoAODv8, named `nano106Xv8_on_mini106X_201*_data_NANO.py`. Notice that the current version can create 4 types of files depending on the PF candidates content. 
-In this files, for simplicity, the 4 options are included but only one is commented out for use. For instance:
-```
-process = PFnano_customizeMC(process)
-#process = PFnano_customizeMC_allPF(process)            ##### PFcands will content ALL the PF Cands
-#process = PFnano_customizeMC_AK4JetsOnly(process)      ##### PFcands will content only the AK4 jets PF cands
-#process = PFnano_customizeMC_AK8JetsOnly(process)      ##### PFcands will content only the AK8 jets PF cands
-#process = PFnano_customizeMC_noInputs(process)         ##### No PFcands but all the other content is available.
-```
+There are python config files ready to run in `PhysicsTools/PFNano/test/` for the UL campaign of nanoAODv9, named `nano_{mc,data}_{2016,2017,2018}_UL*_NANO.py`. 
 
-New since Pull Request [#39](https://github.com/cms-jet/PFNano/pull/39): Examples to include or exclude the input features for the DeepJet tagger are given in `nano106Xv8_on_mini106X_2017_mc_NANO.py`. Now the list of options that are currently implemented inside `pfnano_cff.py` (e.g. for MC) looks like that:
-```
-process = PFnano_customizeMC(process)
-#process = PFnano_customizeMC_add_DeepJet(process)                  ##### DeepJet inputs are added to the Jet collection
-#process = PFnano_customizeMC_allPF(process)                        ##### PFcands will content ALL the PF Cands
-#process = PFnano_customizeMC_allPF_add_DeepJet(process)            ##### PFcands will content ALL the PF Cands; + DeepJet inputs for Jets
-#process = PFnano_customizeMC_AK4JetsOnly(process)                  ##### PFcands will content only the AK4 jets PF cands
-#process = PFnano_customizeMC_AK4JetsOnly_add_DeepJet(process)      ##### PFcands will content only the AK4 jets PF cands; + DeepJet inputs for Jets
-#process = PFnano_customizeMC_AK8JetsOnly(process)                  ##### PFcands will content only the AK8 jets PF cands
-#process = PFnano_customizeMC_noInputs(process)                     ##### No PFcands but all the other content is available.
-```
-In general, whenever `_add_DeepJet` is specified (does not apply to `AK8JetsOnly` and `noInputs`), the DeepJet inputs are added to the Jet collection. For all other cases that involve adding tagger inputs, only DeepCSV and / or DDX are taken into account as default (= the old behaviour when `keepInputs=True`). Internally, this is handled by selecting a list of taggers, namely choosing from `DeepCSV`, `DeepJet`, and `DDX` (or an empty list for the `noInputs`-case, formerly done by setting `keepInputs=False`, now set `keepInputs=[]`). This refers to a change of the logic inside `pfnano_cff.py` and `addBTV.py`. If one wants to use this new flexibility, one can also define new customization functions with other combinations of taggers. Currently, there are all configurations to reproduce the ones that were available previously, and all configuations that extend the old ones by adding DeepJet inputs. DeepJet outputs, on top of the discriminators already present in NanoAOD, are added in any case where AK4Jets are added, i.e. there is no need to require the full set of inputs to get the individual output nodes / probabilities. The updated description using `PFnano_customizeMC_add_DeepJet` can be viewed here: [here](https://annika-stein.web.cern.ch/PFNano/AddDeepJetTagInfo_desc.html) and the size [here](https://annika-stein.web.cern.ch/PFNano/AddDeepJetTagInfo_size.html).
+<details>
+  <summary>Details on how the config files are modified<summary>
+  (comments below are for nanoAODv8 production, which this was last updated for officially, but are generally applicable to the nanoAODv9 (on MiniAODv2) production this branch is intended for)
+    
+  Notice that the current version can create 4 types of files depending on the PF candidate contents. 
+  In these files, for simplicity, 4 options are included but only one is commented out for use. For instance:
+  ```
+  process = PFnano_customizeMC(process)
+  #process = PFnano_customizeMC_allPF(process)            ##### PFcands will content ALL the PF Cands
+  #process = PFnano_customizeMC_AK4JetsOnly(process)      ##### PFcands will content only the AK4 jets PF cands
+  #process = PFnano_customizeMC_AK8JetsOnly(process)      ##### PFcands will content only the AK8 jets PF cands
+  #process = PFnano_customizeMC_noInputs(process)         ##### No PFcands but all the other content is available.
+  ```
+
+  New since Pull Request [#39](https://github.com/cms-jet/PFNano/pull/39): Examples to include or exclude the input features for the DeepJet tagger are given in `nano106Xv8_on_mini106X_2017_mc_NANO.py`. Now the list of options that are currently implemented inside `pfnano_cff.py` (e.g. for MC) looks like that:
+  ```
+  process = PFnano_customizeMC(process)
+  #process = PFnano_customizeMC_add_DeepJet(process)                  ##### DeepJet inputs are added to the Jet collection
+  #process = PFnano_customizeMC_allPF(process)                        ##### PFcands will content ALL the PF Cands
+  #process = PFnano_customizeMC_allPF_add_DeepJet(process)            ##### PFcands will content ALL the PF Cands; + DeepJet inputs for Jets
+  #process = PFnano_customizeMC_AK4JetsOnly(process)                  ##### PFcands will content only the AK4 jets PF cands
+  #process = PFnano_customizeMC_AK4JetsOnly_add_DeepJet(process)      ##### PFcands will content only the AK4 jets PF cands; + DeepJet inputs for Jets
+  #process = PFnano_customizeMC_AK8JetsOnly(process)                  ##### PFcands will content only the AK8 jets PF cands
+  #process = PFnano_customizeMC_noInputs(process)                     ##### No PFcands but all the other content is available.
+  ```
+  In general, whenever `_add_DeepJet` is specified (does not apply to `AK8JetsOnly` and `noInputs`), the DeepJet inputs are added to the Jet collection. For all other cases that involve adding tagger inputs, only DeepCSV and / or DDX are taken into account as default (= the old behaviour when `keepInputs=True`). Internally, this is handled by selecting a list of taggers, namely choosing from `DeepCSV`, `DeepJet`, and `DDX` (or an empty list for the `noInputs`-case, formerly done by setting `keepInputs=False`, now set `keepInputs=[]`). This refers to a change of the logic inside `pfnano_cff.py` and `addBTV.py`. If one wants to use this new flexibility, one can also define new customization functions with other combinations of taggers. Currently, there are all configurations to reproduce the ones that were available previously, and all configuations that extend the old ones by adding DeepJet inputs. DeepJet outputs, on top of the discriminators already present in NanoAOD, are added in any case where AK4Jets are added, i.e. there is no need to require the full set of inputs to get the individual output nodes / probabilities. The updated description using `PFnano_customizeMC_add_DeepJet` can be viewed here: [here](https://annika-stein.web.cern.ch/PFNano/AddDeepJetTagInfo_desc.html) and the size [here](https://annika-stein.web.cern.ch/PFNano/AddDeepJetTagInfo_size.html).
+<details>
 
 ### How to create python files using cmsDriver
 
