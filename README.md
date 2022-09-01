@@ -19,9 +19,10 @@ cmsenv
 git cms-addpkg PhysicsTools/NanoAOD
 git cms-rebase-topic andrzejnovak:614nosort 
 git clone https://github.com/kaustuvdatta/PFNano.git PhysicsTools/PFNano
-scram b -j 10
 cd PhysicsTools/PFNano/
 git checkout origin RunIISummer20_production
+cd -
+scram b -j 10
 cd PhysicsTools/PFNano/test
 ```
 ## Local Usage and setup: 
