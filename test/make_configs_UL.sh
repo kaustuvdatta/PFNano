@@ -45,49 +45,49 @@ eval set -- "$PARAMS"
 
 # MC (2016, preVFP):
 cmsDriver.py nano_mc_2016_ULPreVFP --mc --eventcontent NANOAODSIM --datatier NANOAODSIM --step NANO \
---conditions 106X_mcRun2_asymptotic_preVFP_v9  --era Run2_2016,run2_nanoAOD_106Xv1 \
+--conditions 106X_mcRun2_asymptotic_preVFP_v11  --era Run2_2016,run2_nanoAOD_106Xv2 \
 --customise_commands="process.add_(cms.Service('InitRootHandlers', EnableIMT = cms.untracked.bool(False)))" --nThreads 4 \
--n 100 --filein  /store/mc/RunIISummer19UL16MiniAOD/QCD_Pt_2400to3200_TuneCP5_13TeV_pythia8/MINIAODSIM/106X_mcRun2_asymptotic_v13-v2/100000/EF482706-F402-E648-AB6A-D5B2700C8023.root --fileout file:nano_mc2016pre.root \
---customise PhysicsTools/PFNano/pfnano_cff.PFnano_customizeMC$NOINPUTS  $NO_EXEC $PARALLEL
+-n 100 --filein /store/mc/RunIISummer20UL16MiniAODAPVv2/QCD_Pt_1000to1400_TuneCP5_13TeV_pythia8/MINIAODSIM/106X_mcRun2_asymptotic_preVFP_v11-v1/120000/013ECA87-B948-6B41-A491-3681E6051D0C.root --fileout file:nano_mc2016pre.root \
+--customise PhysicsTools/PFNano/pfnano_cff.PFnano_customizeMC_AK8JetsOnly$NOINPUTS  $NO_EXEC $PARALLEL
 
 # MC (2016, postVFP):
 cmsDriver.py nano_mc_2016_ULPostVFP --mc --eventcontent NANOAODSIM --datatier NANOAODSIM --step NANO \
---conditions 106X_mcRun2_asymptotic_v15  --era Run2_2016,run2_nanoAOD_106Xv1 \
+--conditions 106X_mcRun2_asymptotic_v17  --era Run2_2016,run2_nanoAOD_106Xv2 \
 --customise_commands="process.add_(cms.Service('InitRootHandlers', EnableIMT = cms.untracked.bool(False)))" --nThreads 4 \
--n 100 --filein /store/mc/RunIISummer19UL16MiniAOD/QCD_Pt_2400to3200_TuneCP5_13TeV_pythia8/MINIAODSIM/106X_mcRun2_asymptotic_v13-v2/100000/EF482706-F402-E648-AB6A-D5B2700C8023.root --fileout file:nano_mc2016post.root \
---customise PhysicsTools/PFNano/pfnano_cff.PFnano_customizeMC$NOINPUTS  $NO_EXEC $PARALLEL
+-n 100 --filein /store/mc/RunIISummer20UL16MiniAODv2/QCD_Pt_1000to1400_TuneCP5_13TeV_pythia8/MINIAODSIM/106X_mcRun2_asymptotic_v17-v1/120000/100E7694-DCCD-3F47-8FE4-B2B83A5A7B34.root --fileout file:nano_mc2016post.root \
+--customise PhysicsTools/PFNano/pfnano_cff.PFnano_customizeMC_AK8JetsOnly$NOINPUTS  $NO_EXEC $PARALLEL
 
 # Data (2016):
 cmsDriver.py nano_data_2016_UL --data --eventcontent NANOAODSIM --datatier NANOAODSIM --step NANO \
---conditions 106X_dataRun2_v32   --era Run2_2016,run2_nanoAOD_106Xv1 \
+--conditions 106X_dataRun2_v35   --era Run2_2016,run2_nanoAOD_106Xv2 \
 --customise_commands="process.add_(cms.Service('InitRootHandlers', EnableIMT = cms.untracked.bool(False)))" --nThreads 4 \
--n 100 --filein /store/data/Run2016E/JetHT/MINIAOD/21Feb2020_UL2016_HIPM-v1/40000/BA1C74E6-FBB0-AE40-982F-8C7D3E73E0DC.root --fileout file:nano_data2016.root \
---customise PhysicsTools/PFNano/pfnano_cff.PFnano_customizeData$NOINPUTS  $NO_EXEC $PARALLEL
+-n 100 --filein /store/data/Run2016C/JetHT/MINIAOD/HIPM_UL2016_MiniAODv2-v2/120000/0BE6C222-5FC9-294A-9784-65E484181C51.root --fileout file:nano_data2016.root \
+--customise PhysicsTools/PFNano/pfnano_cff.PFnano_customizeData_AK8JetsOnly$NOINPUTS  $NO_EXEC $PARALLEL
 
 # MC (2017):
-cmsDriver.py nano_mc_2017_UL --mc --eventcontent NANOAODSIM --datatier NANOAODSIM --step NANO \
---conditions 106X_mc2017_realistic_v8   --era Run2_2017,run2_nanoAOD_106Xv1  \
---customise_commands="process.add_(cms.Service('InitRootHandlers', EnableIMT = cms.untracked.bool(False)))" --nThreads 4 \
--n 100 --filein /store/mc/RunIISummer19UL17MiniAOD/QCD_Pt_1400to1800_TuneCP5_13TeV_pythia8/MINIAODSIM/106X_mc2017_realistic_v6-v2/100000/BFAAC85A-F5C5-8843-8D2A-76A9E873E24B.root --fileout file:nano_mc2017.root \
---customise PhysicsTools/PFNano/pfnano_cff.PFnano_customizeMC$NOINPUTS  $NO_EXEC $PARALLEL
+#cmsDriver.py nano_mc_2017_UL --mc --eventcontent NANOAODSIM --datatier NANOAODSIM --step NANO \
+#--conditions 106X_mc2017_realistic_v9   --era Run2_2017,run2_nanoAOD_106Xv2  \
+#--customise_commands="process.add_(cms.Service('InitRootHandlers', EnableIMT = cms.untracked.bool(False)))" --nThreads 4 \
+#-n 100 --filein /store/mc/RunIISummer20UL17MiniAODv2/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/106X_mc2017_realistic_v9-v1/00000/005708B7-331C-904E-88B9-189011E6C9DD.root --fileout file:nano_mc2017.root \
+#--customise PhysicsTools/PFNano/pfnano_cff.PFnano_customizeMC_AK8JetsOnly$NOINPUTS  $NO_EXEC $PARALLEL
 
 # Data (2017):
 cmsDriver.py nano_data_2017_UL --data --eventcontent NANOAODSIM --datatier NANOAODSIM --step NANO \
---conditions 106X_dataRun2_v32    --era Run2_2017,run2_nanoAOD_106Xv1 \
+--conditions 106X_dataRun2_v35    --era Run2_2017,run2_nanoAOD_106Xv2 \
 --customise_commands="process.add_(cms.Service('InitRootHandlers', EnableIMT = cms.untracked.bool(False)))" --nThreads 4 \
--n 100 --filein  /store/data/Run2017B/JetHT/MINIAOD/09Aug2019_UL2017-v1/50000/421E15F6-C6DA-D848-9537-FEC70D67C61C.root --fileout file:nano_data2017.root \
---customise PhysicsTools/PFNano/pfnano_cff.PFnano_customizeData$NOINPUTS  $NO_EXEC $PARALLEL
+-n 100 --filein /store/data/Run2017C/JetHT/MINIAOD/UL2017_MiniAODv2-v1/260000/0925457A-3C64-BD4D-BDE4-6545610FB41C.root --fileout file:nano_data2017.root \
+--customise PhysicsTools/PFNano/pfnano_cff.PFnano_customizeData_AK8JetsOnly$NOINPUTS  $NO_EXEC $PARALLEL
 
 # MC (2018):
-cmsDriver.py nano_mc_2018_UL --mc --eventcontent NANOAODSIM --datatier NANOAODSIM --step NANO \
---conditions 106X_upgrade2018_realistic_v15_L1v1   --era Run2_2018,run2_nanoAOD_106Xv1 \
---customise_commands="process.add_(cms.Service('InitRootHandlers', EnableIMT = cms.untracked.bool(False)))" --nThreads 4 \
--n 100 --filein /store/mc/RunIISummer19UL18MiniAOD/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v11_L1v1-v2/2310000/C42FF9DE-BC2E-EA48-A79B-131083B72BFC.root --fileout file:nano_mc2018.root \
---customise PhysicsTools/PFNano/pfnano_cff.PFnano_customizeMC$NOINPUTS  $NO_EXEC $PARALLEL
+#cmsDriver.py nano_mc_2018_UL --mc --eventcontent NANOAODSIM --datatier NANOAODSIM --step NANO \
+#--conditions 106X_upgrade2018_realistic_v16_L1v1   --era Run2_2018,run2_nanoAOD_106Xv2 \
+#--customise_commands="process.add_(cms.Service('InitRootHandlers', EnableIMT = cms.untracked.bool(False)))" --nThreads 4 \
+#-n 100 --filein /store/mc/RunIISummer20UL18MiniAODv2/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/106X_upgrade2018_realistic_v16_L1v1-v2/120000/006455CD-9CDB-B843-B50D-5721C39F30CE.root --fileout file:nano_mc2018.root \
+#--customise PhysicsTools/PFNano/pfnano_cff.PFnano_customizeMC_AK8JetsOnly$NOINPUTS  $NO_EXEC $PARALLEL
 
 # Data (2018):
 cmsDriver.py nano_data_2018_UL --data --eventcontent NANOAODSIM --datatier NANOAODSIM --step NANO \
---conditions 106X_dataRun2_v32    --era Run2_2018,run2_nanoAOD_106Xv1 \
+--conditions 106X_dataRun2_v35    --era Run2_2018,run2_nanoAOD_106Xv2 \
 --customise_commands="process.add_(cms.Service('InitRootHandlers', EnableIMT = cms.untracked.bool(False)))" --nThreads 4 \
--n 100 --filein /store/data/Run2018A/JetHT/MINIAOD/12Nov2019_UL2018-v2/100000/BBE577F0-95A1-A542-B86C-58FD46079404.root --fileout file:nano_data2018.root \
---customise PhysicsTools/PFNano/pfnano_cff.PFnano_customizeData$NOINPUTS  $NO_EXEC $PARALLEL
+-n 100 --filein /store/data/Run2018C/JetHT/MINIAOD/UL2018_MiniAODv2-v1/00000/FDF76AAE-1816-FC4A-AC4D-0F61A385420D.root --fileout file:nano_data2018.root \
+--customise PhysicsTools/PFNano/pfnano_cff.PFnano_customizeData_AK8JetsOnly$NOINPUTS  $NO_EXEC $PARALLEL
