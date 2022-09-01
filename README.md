@@ -17,7 +17,7 @@ cmsrel  CMSSW_10_6_29
 cd  CMSSW_10_6_29/src
 cmsenv
 git cms-addpkg PhysicsTools/NanoAOD
-git cms-rebase-topic andrzejnovak:614nosort #not sure why this is necessary, but following the official repo
+git cms-rebase-topic andrzejnovak:614nosort 
 git clone https://github.com/kaustuvdatta/PFNano.git PhysicsTools/PFNano
 scram b -j 10
 cd PhysicsTools/PFNano/
