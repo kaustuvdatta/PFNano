@@ -102,33 +102,33 @@ bash make_configs_UL.sh  -e # run to actually execute configs on 1000 events
     For UL 2016-2018 MC:
     
     ```
-    python submit_all.py -c nano_mc_2016_ULPreVFP_NANO.py  -f datasets/UL2016_MC_preVFP.txt  -d NANOv9_UL16preVFP_MC
+    python submit_all.py -c nano_mc_2016_ULPreVFP_NANO.py  -f datasets/UL2016_MC_preVFP.txt  -d NANOv9_UL16preVFP_MC --extension PFNanov2pt2
 
-    python submit_all.py -c nano_mc_2016_ULPostVFP_NANO.py  -f datasets/UL2016_MC_postVFP.txt  -d NANOv9_UL16postVFP_MC
+    python submit_all.py -c nano_mc_2016_ULPostVFP_NANO.py  -f datasets/UL2016_MC_postVFP.txt  -d NANOv9_UL16postVFP_MC --extension PFNanov2pt2
 
-    #python submit_all.py -c nnano_mc_2017_UL_NANO.py  -f datasets/UL2017_MC.txt   -d NANOv9_UL17_MC
+    #python submit_all.py -c nnano_mc_2017_UL_NANO.py  -f datasets/UL2017_MC.txt   -d NANOv9_UL17_MC --extension PFNanov2pt2
 
-    #python submit_all.py -c nano_mc_2018_UL_NANO.py  -f datasets/UL2018_MC.txt  -d NANOv9_UL18_MC
+    #python submit_all.py -c nano_mc_2018_UL_NANO.py  -f datasets/UL2018_MC.txt  -d NANOv9_UL18_MC --extension PFNanov2pt2
     ```
     
     For UL 2016-2018 data:
     
     ```
-    python submit_all.py -c nano_data_2016_ULPreVFP_NANO.py  -f datasets/JetHT_UL2016_preVFP.txt -d NANOv9_UL16preVFP_Data -l jsons/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt 
+    python submit_all.py -c nano_data_2016_ULPreVFP_NANO.py  -f datasets/JetHT_UL2016_preVFP.txt -d NANOv9_UL16preVFP_Data -l jsons/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt  --extension PFNanov2pt2
 
-    python submit_all.py -c nano_data_2016_ULPostVFP_NANO.py  -f datasets/JetHT_UL2016_postVFP.txt -d NANOv9_UL16postVFP_Data -l jsons/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt 
+    python submit_all.py -c nano_data_2016_ULPostVFP_NANO.py  -f datasets/JetHT_UL2016_postVFP.txt -d NANOv9_UL16postVFP_Data -l jsons/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt --extension PFNanov2pt2
     
-    python submit_all.py -c nano_data_2016_ULPreVFP_NANO.py  -f datasets/SingleMuon_UL2016_preVFP.txt -d NANOv9_UL16preVFP_Data -l jsons/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt 
+    python submit_all.py -c nano_data_2016_ULPreVFP_NANO.py  -f datasets/SingleMuon_UL2016_preVFP.txt -d NANOv9_UL16preVFP_Data -l jsons/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt --extension PFNanov2pt2
 
-    python submit_all.py -c nano_data_2016_ULPostVFP_NANO.py  -f datasets/SingleMuon_UL2016_postVFP.txt -d NANOv9_UL16postVFP_Data -l jsons/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt 
+    python submit_all.py -c nano_data_2016_ULPostVFP_NANO.py  -f datasets/SingleMuon_UL2016_postVFP.txt -d NANOv9_UL16postVFP_Data -l jsons/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt --extension PFNanov2pt2
 
-    python submit_all.py -c nano_data_2017_UL_NANO.py -f datasets/JetHT_UL2017.txt -d NANOv9_UL17_Data -l jsons/Cert_294927-306462_13TeV_UL2017_Collisions17_GoldenJSON.txt  
+    #python submit_all.py -c nano_data_2017_UL_NANO.py -f datasets/JetHT_UL2017.txt -d NANOv9_UL17_Data -l jsons/Cert_294927-306462_13TeV_UL2017_Collisions17_GoldenJSON.txt  --extension PFNanov2pt2
     
-    python submit_all.py -c nano_data_2017_UL_NANO.py -f datasets/SingleMuon_UL2017.txt -d NANOv9_UL17_Data -l jsons/Cert_294927-306462_13TeV_UL2017_Collisions17_GoldenJSON.txt  
+    #python submit_all.py -c nano_data_2017_UL_NANO.py -f datasets/SingleMuon_UL2017.txt -d NANOv9_UL17_Data -l jsons/Cert_294927-306462_13TeV_UL2017_Collisions17_GoldenJSON.txt  --extension PFNanov2pt2
 
-    python submit_all.py -c nano_data_2018_UL_NANO.py -f datasets/JetHT_UL2018.txt -d NANOv9_UL18_Data -l jsons/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt 
+    #python submit_all.py -c nano_data_2018_UL_NANO.py -f datasets/JetHT_UL2018.txt -d NANOv9_UL18_Data -l jsons/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt --extension PFNanov2pt2
     
-    python submit_all.py -c nano_data_2018_UL_NANO.py -f datasets/SingleMuon_UL2018.txt -d NANOv9_UL18_Data -l jsons/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt
+    #python submit_all.py -c nano_data_2018_UL_NANO.py -f datasets/SingleMuon_UL2018.txt -d NANOv9_UL18_Data -l jsons/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt --extension PFNanov2pt2
     ```
 
 

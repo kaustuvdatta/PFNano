@@ -2,13 +2,13 @@
 # using: 
 # Revision: 1.19 
 # Source: /local/reps/CMSSW/CMSSW/Configuration/Applications/python/ConfigBuilder.py,v 
-# with command line options: nano_mc_2016_ULPreVFP --mc --eventcontent NANOAODSIM --datatier NANOAODSIM --step NANO --conditions 106X_mcRun2_asymptotic_preVFP_v11 --era Run2_2016,run2_nanoAOD_106Xv2 --customise_commands=process.add_(cms.Service('InitRootHandlers', EnableIMT = cms.untracked.bool(False))) --nThreads 4 -n 100 --filein /store/mc/RunIISummer20UL16MiniAODAPVv2/QCD_Pt_1000to1400_TuneCP5_13TeV_pythia8/MINIAODSIM/106X_mcRun2_asymptotic_preVFP_v11-v1/120000/013ECA87-B948-6B41-A491-3681E6051D0C.root --fileout file:nano_mc2016pre.root --customise PhysicsTools/PFNano/pfnano_cff.PFnano_customizeMC_AK8JetsOnly --no_exec
+# with command line options: nano_mc_2016_ULPreVFP --mc --eventcontent NANOAODSIM --datatier NANOAODSIM --step NANO --conditions 106X_mcRun2_asymptotic_preVFP_v11 --era Run2_2016_HIPM,run2_nanoAOD_106Xv2 --customise_commands=process.add_(cms.Service('InitRootHandlers', EnableIMT = cms.untracked.bool(False))) --nThreads 4 -n 100 --filein /store/mc/RunIISummer20UL16MiniAODAPVv2/QCD_Pt_1000to1400_TuneCP5_13TeV_pythia8/MINIAODSIM/106X_mcRun2_asymptotic_preVFP_v11-v1/120000/013ECA87-B948-6B41-A491-3681E6051D0C.root --fileout file:nano_mc2016preVFP.root --customise PhysicsTools/PFNano/pfnano_cff.PFnano_customizeMC_AK8JetsOnly --no_exec
 import FWCore.ParameterSet.Config as cms
 
-from Configuration.Eras.Era_Run2_2016_cff import Run2_2016
+from Configuration.Eras.Era_Run2_2016_HIPM_cff import Run2_2016_HIPM
 from Configuration.Eras.Modifier_run2_nanoAOD_106Xv2_cff import run2_nanoAOD_106Xv2
 
-process = cms.Process('NANO',Run2_2016,run2_nanoAOD_106Xv2)
+process = cms.Process('NANO',Run2_2016_HIPM,run2_nanoAOD_106Xv2)
 
 # import of standard configurations
 process.load('Configuration.StandardSequences.Services_cff')
@@ -52,7 +52,7 @@ process.NANOAODSIMoutput = cms.OutputModule("NanoAODOutputModule",
         dataTier = cms.untracked.string('NANOAODSIM'),
         filterName = cms.untracked.string('')
     ),
-    fileName = cms.untracked.string('file:nano_mc2016pre.root'),
+    fileName = cms.untracked.string('file:nano_mc2016preVFP.root'),
     outputCommands = process.NANOAODSIMEventContent.outputCommands
 )
 

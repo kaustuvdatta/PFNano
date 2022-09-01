@@ -90,7 +90,7 @@ def main():
     config.section_("JobType")
     config.JobType.pluginName = 'Analysis'
     config.JobType.psetName = options.cfg
-    config.JobType.maxMemoryMB = 5000 # Default is 2500 : Max I have used is 13000
+    config.JobType.maxMemoryMB = 4500 # Default is 2500
     # minutes tied to not automatic splitting
     # config.JobType.maxJobRuntimeMin = 2750 #Default is 1315; 2750 minutes guaranteed to be available; Max I have used is 9000 
     config.JobType.numCores = 4
@@ -102,7 +102,7 @@ def main():
     config.section_("Data")
     config.Data.inputDataset = None
     config.Data.splitting = ''
-    config.Data.ignoreLocality = options.remote
+    config.Data.ignoreLocality = False#options.remote
     config.Data.publication = True if not options.test_only else False
     if options.test_only:
         config.Data.totalUnits = 1
@@ -156,17 +156,17 @@ def main():
         config.Data.inputDataset = job
         config.Data.outputDatasetTag = re.sub(r'MiniAOD[v]?[0-9]?', options.extension, cond) if cond.startswith('RunII') else cond+'_'+options.extension
         print(config.Data.outputDatasetTag)
-        config.Data.outLFNDirBase = options.out 
+        config.Data.outLFNDirBase = '/store/user/'+os.environ['USER']+'/PFNano/106x_v02/' #options.out 
         config.Data.allowNonValidInputDataset = True
         if datatier == 'MINIAODSIM':
-        #   config.Data.splitting = 'FileBased'
-        #   config.Data.unitsPerJob = 10
-            config.Data.splitting = 'Automatic'
+           #config.Data.splitting = 'FileBased'
+           #config.Data.unitsPerJob = 10
+           config.Data.splitting = 'Automatic'
         elif datatier == 'MINIAOD':
-          config.Data.splitting = 'LumiBased'
-          config.Data.lumiMask = options.lumiMask
-          config.Data.unitsPerJob = 50 #10  - at 100, some jobs will run out of time
-          config.JobType.maxJobRuntimeMin = 2750 #Default is 1315; 2750 minutes guaranteed to be available; Max I have used is 9000
+            config.Data.splitting = 'LumiBased'
+            config.Data.lumiMask = options.lumiMask
+            config.Data.unitsPerJob = 50 #10  - at 100, some jobs will run out of time
+            config.JobType.maxJobRuntimeMin = 2750 #Default is 1315; 2750 minutes guaranteed to be available; Max I have used is 9000
         print('Submitting ' + config.General.requestName + ', dataset = ' + job)
         print('Configuration :')
         print(config)
