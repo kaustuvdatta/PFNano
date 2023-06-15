@@ -90,7 +90,7 @@ def main():
     config.section_("JobType")
     config.JobType.pluginName = 'Analysis'
     config.JobType.psetName = options.cfg
-    config.JobType.maxMemoryMB = 4500 # Default is 2500
+    config.JobType.maxMemoryMB = 10000 # Default is 2500 : Max I have used is 13000
     # minutes tied to not automatic splitting
     # config.JobType.maxJobRuntimeMin = 2750 #Default is 1315; 2750 minutes guaranteed to be available; Max I have used is 9000 
     config.JobType.numCores = 4
@@ -102,7 +102,7 @@ def main():
     config.section_("Data")
     config.Data.inputDataset = None
     config.Data.splitting = ''
-    config.Data.ignoreLocality = False#options.remote
+    config.Data.ignoreLocality = options.remote#False
     config.Data.publication = True if not options.test_only else False
     if options.test_only:
         config.Data.totalUnits = 1
@@ -110,8 +110,9 @@ def main():
 
     config.section_("Site")
     if options.remote:
-        config.Site.whitelist = options.whitelist.split(',')
+        config.Site.whitelist = ['T1_US_*','T2_US_*','T2_CH_*','T1_IT_*','T2_IT_*','T1_DE_*','T2_DE_*','T1_FR_*','T2_FR_*',]#'T2_BR_*','T1_RU_*','T2_RU_*','T1_UK_*','T2_UK_*','T2_IN_TIFR','T2_CN_Beijing','T2_UA_*','T2_KR_*','T2_BE_*','T2_PT_*','T2_HU_*','T2_FI_*','T1_ES_*','T2_ES_*','T2_TR_*','T2_PL_*','T2_BR_*']
     config.Site.storageSite = options.storageSite
+    #config.Site.blacklist = ['T2_US_UCSD','T2_US_Nebraska'] 
 
     if options.dcms:
         config.section_("User")
@@ -152,21 +153,22 @@ def main():
             if 'ext' in cond and not 'ext' in requestname:
                 requestname = requestname + '_' + cond.split('_')[-1]
         print('requestname = ', requestname)
-        config.General.requestName = requestname
+        config.General.requestName = requestname#+'-ext1'
         config.Data.inputDataset = job
-        config.Data.outputDatasetTag = re.sub(r'MiniAOD[v]?[0-9]?', options.extension, cond) if cond.startswith('RunII') else cond+'_'+options.extension
+        config.Data.outputDatasetTag = re.sub(r'MiniAOD[v]?[0-9]?', options.extension, cond) if cond.startswith('RunII') else cond+'_'+options.extension#+'-ext1'
         print(config.Data.outputDatasetTag)
         config.Data.outLFNDirBase = '/store/user/'+os.environ['USER']+'/PFNano/106x_v02/' #options.out 
         config.Data.allowNonValidInputDataset = True
         if datatier == 'MINIAODSIM':
-           #config.Data.splitting = 'FileBased'
-           #config.Data.unitsPerJob = 10
-           config.Data.splitting = 'Automatic'
+           config.Data.splitting = 'FileBased'
+           config.Data.unitsPerJob = 1
+           config.JobType.maxJobRuntimeMin = 1600
+           #config.Data.splitting = 'Automatic'
         elif datatier == 'MINIAOD':
             config.Data.splitting = 'LumiBased'
             config.Data.lumiMask = options.lumiMask
-            config.Data.unitsPerJob = 50 #10  - at 100, some jobs will run out of time
-            config.JobType.maxJobRuntimeMin = 2750 #Default is 1315; 2750 minutes guaranteed to be available; Max I have used is 9000
+            config.Data.unitsPerJob = 25 #10  - at 100, some jobs will run out of time
+            config.JobType.maxJobRuntimeMin = 1200 #Default is 1315; 2750 minutes guaranteed to be available; Max I have used is 9000
         print('Submitting ' + config.General.requestName + ', dataset = ' + job)
         print('Configuration :')
         print(config)
