@@ -90,7 +90,7 @@ def main():
     config.section_("JobType")
     config.JobType.pluginName = 'Analysis'
     config.JobType.psetName = options.cfg
-    config.JobType.maxMemoryMB = 10000 # Default is 2500 : Max I have used is 13000
+    config.JobType.maxMemoryMB = 8000 # Default is 2500 
     # minutes tied to not automatic splitting
     # config.JobType.maxJobRuntimeMin = 2750 #Default is 1315; 2750 minutes guaranteed to be available; Max I have used is 9000 
     config.JobType.numCores = 4
@@ -110,7 +110,7 @@ def main():
 
     config.section_("Site")
     if options.remote:
-        config.Site.whitelist = ['T1_US_*','T2_US_*','T2_CH_*','T1_IT_*','T2_IT_*','T1_DE_*','T2_DE_*','T1_FR_*','T2_FR_*',]#'T2_BR_*','T1_RU_*','T2_RU_*','T1_UK_*','T2_UK_*','T2_IN_TIFR','T2_CN_Beijing','T2_UA_*','T2_KR_*','T2_BE_*','T2_PT_*','T2_HU_*','T2_FI_*','T1_ES_*','T2_ES_*','T2_TR_*','T2_PL_*','T2_BR_*']
+        config.Site.whitelist = ['T1_US_*','T2_US_*','T2_CH_*','T1_IT_*','T2_IT_*','T1_DE_*','T2_DE_*','T2_EE_*','T1_FR_*','T2_FR_*','T1_UK_*','T2_UK_*','T2_BR_*','T2_TW_*', 'T2_IN_TIFR','T2_CN_Beijing','T2_UA_*','T2_KR_*','T2_BE_*','T2_PT_*','T2_HU_*','T2_FI_*','T1_ES_*','T2_ES_*','T2_TR_*','T2_PL_*','T1_RU_*','T2_RU_*']
     config.Site.storageSite = options.storageSite
     #config.Site.blacklist = ['T2_US_UCSD','T2_US_Nebraska'] 
 
@@ -161,7 +161,7 @@ def main():
         config.Data.allowNonValidInputDataset = True
         if datatier == 'MINIAODSIM':
            config.Data.splitting = 'FileBased'
-           config.Data.unitsPerJob = 1
+           config.Data.unitsPerJob = 2 #,4 for TTSemiLeptonic 2017 v2
            config.JobType.maxJobRuntimeMin = 1600
            #config.Data.splitting = 'Automatic'
         elif datatier == 'MINIAOD':

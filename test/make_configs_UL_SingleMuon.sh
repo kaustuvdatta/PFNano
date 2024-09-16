@@ -80,7 +80,7 @@ cmsDriver.py nano_data_2016_ULPostVFP --data --eventcontent NANOAODSIM --datatie
 
 # Data (2017):
 cmsDriver.py nano_data_2017_UL --data --eventcontent NANOAODSIM --datatier NANOAODSIM --step NANO \
---conditions 106X_dataRun2_v35    --era Run2_2017,run2_nanoAOD_106Xv2 \
+--conditions 106X_dataRun2_v36    --era Run2_2017,run2_nanoAOD_106Xv2 \
 --customise_commands="process.add_(cms.Service('InitRootHandlers', EnableIMT = cms.untracked.bool(False)))" --nThreads 4 \
 -n 100 --filein /store/data/Run2017B/SingleMuon/MINIAOD/UL2017_MiniAODv2-v1/260000/9032A966-8ED0-B645-97B6-A8EBC1D8D3B9.root --fileout file:nano_data2017.root \
 --customise PhysicsTools/PFNano/pfnano_cff.PFnano_customizeData_AK8JetsOnly$NOINPUTS  $NO_EXEC $PARALLEL
